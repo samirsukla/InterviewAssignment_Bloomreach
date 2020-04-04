@@ -1,0 +1,16 @@
+*.log
+target/
+*.html
+webdrivers/
+.DS_Store
+login.xml
+test-output/
+Reports/
+reports/
+temp/
+*.jpg
+*.png
+*.pdf
+*.ini
+*.metadata/
+*.setting/
