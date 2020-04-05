@@ -8,6 +8,7 @@
 			<class name="com.BloomReach.Pages.LoginPageTest" />
 			<class name="com.BloomReach.Pages.HomePageTest" />
 			<class name="com.BloomReach.Pages.ContentPageTest" />
+			<class name="com.BloomReach.Pages.ChannelPageTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
