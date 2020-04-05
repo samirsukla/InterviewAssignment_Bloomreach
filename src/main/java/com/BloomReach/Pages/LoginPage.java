@@ -20,7 +20,7 @@ public class LoginPage {
 	public LoginPage(WebDriver driver) throws Exception {
 		this.driver = driver;
 		props = PropertiesFile.prop;
-		int time = 150;
+		int time = 120;
 		wait = new WebDriverWait(driver, time);
 		PropertiesFile.readLoginPropertiesFile();
 		PropertiesFile.readHomePagePropertiesFile();
@@ -78,7 +78,7 @@ public class LoginPage {
 	public void enterDatainInputBox(String path, String valueToEnter) {
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
 		element.click();
-		element.clear();
+		//element.clear();
 		element.sendKeys(valueToEnter);
 	}
 	
@@ -101,10 +101,23 @@ public class LoginPage {
 	}
 	
 	//Click on any element using Action Class
-	public void clickUsingAction(String path) {
-		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+	public void clickUsingAction(WebElement element) {
 		Actions act = new Actions(driver);
 		act.moveToElement(element).click().build().perform();
 	}
+	
+	//Switch to Frame Using WebElement
+	public void switchToFrame(String path) {
+		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(path)));
+		driver.switchTo().frame(element);
+	}
+	
+	//Get Text from an Input Box
+	public String getTextFromInputBox(String path) {
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+		return element.getAttribute("value").trim();
+		
+	}
+	
 	
 }

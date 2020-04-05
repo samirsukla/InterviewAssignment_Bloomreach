@@ -22,13 +22,30 @@ public class HomePageTest extends BrowserSetup{
         props = PropertiesFile.prop;
     }
     
-    //Verify content page loaded or not
+    //Expand the User Menu
     @Test(priority = 21, enabled = true)
+   	public void verifyExpandingUserMenu()
+   	{
+       	boolean flag = home.expandUserMenu();
+      		Assert.assertTrue(flag, "User Menu is not Expanded");
+   		
+   	}
+    //Verify content page loaded or not
+    @Test(priority = 23, enabled = true)
 	public void verifyClickingContentIcon()
 	{
     	boolean flag = home.clickContentIcon();
    		Assert.assertTrue(flag, "Content Page is not loaded");
 		
 	}
+    
+  //Collapse the User Menu
+    @Test(priority = 25, enabled = true)
+   	public void verifyCollapseingUserMenu()
+   	{
+       	boolean flag = home.collapseUserMenu();
+      		Assert.assertTrue(flag, "User Menu is not Collapsed.");
+   		
+   	}
     
 }
