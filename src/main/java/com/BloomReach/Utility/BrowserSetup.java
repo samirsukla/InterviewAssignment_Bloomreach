@@ -1,6 +1,9 @@
 package com.BloomReach.Utility;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -38,12 +41,23 @@ public class BrowserSetup {
 	private static WebDriver initChromeDriver(String url) {
 		System.out.println("Launching google chrome with new profile..");
 		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("useAutomationExtension", false);
+	    options.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));    
         options.addArguments("disable-infobars");
         options.addArguments("--disable-notifications");
+        options.addArguments("--start-maximized");
+        options.addArguments("--disable-web-security");
+        options.addArguments("--no-proxy-server");
+
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+
+        options.setExperimentalOption("prefs", prefs);
         System.setProperty("webdriver.chrome.driver", chromepath);
        // WebDriverManager.chromedriver().version("79.0").setup();
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.manage().window().fullscreen();
 		driver.navigate().to(url);
 		return driver;
@@ -54,7 +68,7 @@ public class BrowserSetup {
 		System.setProperty("webdriver.gecko.driver", firefoxpath);
 		//WebDriverManager.firefoxdriver().setup();
 		driver.manage().window().fullscreen();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		driver.navigate().to(url);
 		return driver;
 	}

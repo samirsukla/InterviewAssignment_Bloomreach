@@ -28,10 +28,33 @@ public class LoginPageTest extends BrowserSetup {
 	// Verify Title
     @Parameters({"url"})
 	@Test(priority = 1, enabled = true)
-	public void verifyHumainHealthTittle(String url)
+	public void verifyBloomReachTittle(String url)
 	{
-		//String pageUrl = props.getProperty("url");
 		Assert.assertEquals(login.verifyBRPageTittle(url), props.getProperty("loginpagetitle"));
 		
 	}
+    //Verify Login Credentials
+    @Test(priority = 3, enabled = true)
+	public void verifyLoginCredentials()
+	{
+		boolean flag = login.enterLoginCredentials();
+		Assert.assertTrue(flag, "Login Credentials are not entered properly");	
+	}
+    
+    //Click Login Button
+    @Test(priority = 5, enabled = true)
+	public void verifyLoginButton()
+	{
+		boolean flag = login.clickLoginButton();
+		Assert.assertTrue(flag, "Login button is not clickable");	
+	}
+    
+    //Verify If Homepage is Loaded
+    @Test(priority = 7, enabled = true)
+   	public void verifyHomePageLoaded()
+   	{
+   		boolean flag = login.checkHomePageLoaded();
+   		Assert.assertTrue(flag, "HomePage is not loaded");	
+   	}
+    
 }
