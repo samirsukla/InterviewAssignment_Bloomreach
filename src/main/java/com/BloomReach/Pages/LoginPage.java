@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.BloomReach.config.PropertiesFile;
@@ -22,12 +23,12 @@ public class LoginPage {
 		int time = 150;
 		wait = new WebDriverWait(driver, time);
 		PropertiesFile.readLoginPropertiesFile();
+		PropertiesFile.readHomePagePropertiesFile();
 	}
 
 	// Check title of the Login Page
 	public String verifyBRPageTittle(String url) {
 		return driver.getTitle();
-
 	}
 	
 	//Fetch the Login Credentials
@@ -60,7 +61,7 @@ public class LoginPage {
 	
 	//Check Homepage Loaded or not
 	public boolean checkHomePageLoaded() {
-		boolean flag = this.checkVisibility(props.getProperty("homepage"));
+		boolean flag = this.checkVisibility(props.getProperty("homepageHeader"));
 		return flag;
 	}
 	
@@ -97,6 +98,13 @@ public class LoginPage {
 		else {
 			return false;
 		}
+	}
+	
+	//Click on any element using Action Class
+	public void clickUsingAction(String path) {
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+		Actions act = new Actions(driver);
+		act.moveToElement(element).click().build().perform();
 	}
 	
 }

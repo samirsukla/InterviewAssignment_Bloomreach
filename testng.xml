@@ -3,9 +3,10 @@
 <suite name="Suite">
 	<parameter name="browserType" value="chrome" />
 	<parameter name="url" value="https://cms.demo.onehippo.com/" />
-	<test name="BloomReachTest">
+	<test name="BloomReachTest" preserve-order="true">
 		<classes>
 			<class name="com.BloomReach.Pages.LoginPageTest" />
+			<class name="com.BloomReach.Pages.HomePageTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
