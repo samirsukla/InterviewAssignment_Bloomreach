@@ -24,11 +24,18 @@ public class ChannelPage extends ContentPage {
 	
 	//Check If the Changes are reflected in the blog
 	public boolean checkTheUpdatedSummary() {
-		String fullText = super.getTextFromLabel(props.getProperty("summarydetails"));
-		if(fullText.contains(props.getProperty("editText"))) {
-			return true;
-		}
-		else {
+		try {
+			switchToFrame(props.getProperty("iframePath"));
+			String fullText = super.getTextFromLabel(props.getProperty("summarydetails"));
+			System.out.println(fullText);
+			if(fullText.contains(props.getProperty("editText"))) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

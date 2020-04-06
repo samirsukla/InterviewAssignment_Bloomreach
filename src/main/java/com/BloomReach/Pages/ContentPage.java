@@ -153,13 +153,18 @@ public class ContentPage extends HomePage {
 
 	// Click on Channel Link
 	public boolean clickChannelLink() {
-		boolean flag1=false,flag2=false;
-		flag1= super.checkVisibility(props.getProperty("channelLink"));
+		try {
+			boolean flag1=false,flag2=false;
+			flag1= super.checkVisibility(props.getProperty("channelLink"));
 
-		super.clickOnElement(props.getProperty("channelLink"));
+			super.clickOnElement(props.getProperty("channelLink"));
 
-		flag2 = super.checkVisibility(props.getProperty("experiencemanagerPage"));
-		return flag1 && flag2;
+			flag2 = super.checkVisibility(props.getProperty("experiencemanagerPage"));
+			return flag1 && flag2;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
